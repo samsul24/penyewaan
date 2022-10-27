@@ -1,0 +1,41 @@
+html.locked {
+  overflow: hidden;
+  touch-action: none;
+}
+.prowl {
+  display: none;
+}
+.prowl-overlay {
+  float: left;
+  clear: none;
+  text-align: inherit;
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.prowl-overlay::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.prowl-modal {
+  display: none;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.prowl-modal.scale {
+  height: 0;
+  width: 0;
+  display: block;
+}
