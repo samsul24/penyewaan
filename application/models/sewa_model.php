@@ -88,36 +88,24 @@ class sewa_model extends CI_Model
           )";
         return $this->db->query($sql);
     }
-    function deleteDataSewa($id_lapangan)
+    function deleteDataSewa($id_sewa)
     {
 
 
         // get data informasi lapangan
-        $sql = "SELECT * FROM data_lapangan WHERE id_lapangan = '$id_lapangan'";
-        $ambilDataSewa = $this->db->query($sql)->row_array();
-
-        // hapus file lama
-        if ($ambilDataSewa['gambar_lapangan']) {
-
-            $config['upload_path']  = './assets/img/img-lapangan/';
-            $direktori = $config['upload_path'] . $ambilDataSewa['gambar_lapangan'];
-
-            // hapus
-            unlink($direktori);
-        }
-
-
-        $this->db->where('id_lapangan', $id_lapangan);
-        $this->db->delete('data_lapangan');
+        $sql = "SELECT * FROM data_sewa WHERE id_sewa = '$id_sewa'";
+        $this->db->query($sql);
+        $this->db->where('id_sewa', $id_sewa);
+        $this->db->delete('data_sewa');
 
 
         // pemberitahuan
-        $html = '<div class="alert alert-success">Pemberitahuan <br> <label>Data lapangan berhasil dihapus</label></div>';
+        $html = '<div class="alert alert-success">Pemberitahuan <br> <label>Data Sewa berhasil dihapus</label></div>';
         $this->session->set_flashdata('msg', $html);
 
 
         // redirect
-        redirect('admin/lapangan');
+        redirect('admin/lapangan/sewa1');
     }
 
 
@@ -133,7 +121,8 @@ class sewa_model extends CI_Model
             'end_time'     => $this->input->post('end_time'),
             'status'     => $this->input->post('status'),
         );
-
+        // var_dump($data);
+        // exit;
         $this->db->where('id_sewa', $id_sewa);
         $this->db->update('data_sewa', $data);
 
@@ -142,7 +131,7 @@ class sewa_model extends CI_Model
         $html = '<div class="alert alert-success">Pemberitahuan <br> <label>Data lapangan berhasil diperbarui</label></div>';
         $this->session->set_flashdata('msg', $html);
 
-        redirect('admin/lapangan');
+        redirect('admin/lapangan/sewa1');
     }
 }
     

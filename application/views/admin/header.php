@@ -188,13 +188,20 @@
                                             <span class="menu-title">Halaman Utama</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="<?php echo base_url('admin/lapangan') ?>">
-                                            <i class="ti-agenda"></i>
-                                            <span class="menu-title">Penyewaan Lapangan</span>
-                                        </a>
-                                    </li>
 
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <i class="ti-agenda"></i>
+                                            <span>Penyewaan Lapangan</span>
+                                            <span class="pull-right-container">
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            <li><a href="<?php echo base_url('admin/lapangan') ?>"><i class="fa fa-circle-o"></i> Lapangan</a></li>
+                                            <li><a href="<?php echo base_url('admin/lapangan/sewa1') ?>"><i class="fa fa-circle-o"></i> Data Sewa L1</a></li>
+                                            <li><a href="<?php echo base_url('admin/lapangan/sewa2') ?>"><i class="fa fa-circle-o"></i> Data Sewa L2</a></li>
+                                        </ul>
+                                    </li>
                                     <li>
                                         <a href="<?php echo base_url('admin/pengumuman') ?>">
                                             <i class="fa fa-gear"></i>
@@ -216,8 +223,6 @@
                                     </li>
 
                                 </ul>
-
-
                             </div>
                         </div>
                     </div>

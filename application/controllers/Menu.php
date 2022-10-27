@@ -37,8 +37,8 @@ class Menu extends CI_Controller
             'lapangan' => $lapangan
 
         );
-        $this->load->view('template/header', $data);
+        // $this->load->view('template/header', $data);
         $this->load->view('menu/jadwal', $data);
-        $this->load->view('template/footer', $data);
+        // $this->load->view('template/footer', $data);
     }
 }

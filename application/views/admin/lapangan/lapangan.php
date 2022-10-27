@@ -32,7 +32,7 @@
                                 <h4 class="">Tabel Lapangan</h4>
                                 <label>Menampilkan daftar lapangan</label> <br>
 
-                                <a href=" <?= base_url('admin/lapangan/post'); ?>" class="btn btn-primary btn-sm btn-labeled"><i class="btn-label ti-plus"></i>Tambah Lapangan Baru</a> <br><br>
+                                <!-- <a href=" <?= base_url('admin/lapangan/post'); ?>" class="btn btn-primary btn-sm btn-labeled"><i class="btn-label ti-plus"></i>Tambah Lapangan Baru</a> <br><br> -->
                                 <!--Small Bootstrap Modal-->
                                 <table class=" table" id="active-datatable" width="100%">
                                     <thead>
@@ -41,7 +41,7 @@
                                             <th>Nama Lapangan</th>
                                             <th>Deskripsi</th>
                                             <th>Status</th>
-                                            <th>Opsi</th>
+                                            <!-- <th>Opsi</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -84,65 +84,95 @@
 
                                                         <label class="<?php echo $warnaLabel ?>"><?php echo $textLabel ?></label>
                                                     </td>
-                                                    <td>
-                                                        <a href=":;" data-target="#ubah-lapangan-<?php echo $row['id_lapangan'] ?>" data-toggle="modal" class="btn btn-icon"><i class="ti-pencil"></i></a>
-                                                        <a href="" data-target="" onclick="proses()" data-toggle="modal" class="btn btn-icon"><i class="ti-eye"></i></a>
+                                                    <!-- <td>
+                                                        <a href=":;" data-target="#add-user" data-id="<?php echo $row['id_lapangan']; ?>" data-toggle="modal" class="btn btn-icon"><i class="ti-pencil"></i></a>
+                                                        <a href="<?php echo $row['id_lapangan'] ?>" data-target="<?php echo $row['id_lapangan'] ?>" onclick="proses()" data-toggle="modal" class="btn btn-icon"><i class="ti-eye"></i></a>
                                                         <a href="<?php echo base_url('admin/lapangan/proseshapus/' . $row['id_lapangan']) ?>" class="btn btn-icon" onclick="return confirm('Apakah anda yakin ingin menghapus lapangan <?php echo $row['nama_lapangan'] ?>')"><i class="ti-trash"></i></a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
 
                                                 <!--Small Bootstrap Modal-->
                                                 <!--===================================================-->
-                                                <div id="lihat-lapangan-<?php echo $row['id_lapangan'] ?>" class="modal fade" tabindex="-1">
-                                                    <?php if ($row['id_lapangan'] == 1) { ?>
-                                                        <div class="modal-dialog modal-md">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal"><i class="pci-cross pci-circle"></i></button>
-                                                                    <h4 class="modal-title" id="mySmallModalLabel">Jadwal</h4>
-                                                                </div>
-
-                                                                <form action="<?php echo base_url('admin/lapangan/prosesupdate/' . $row['id_lapangan']) ?>" method="POST" enctype="multipart/form-data">
-                                                                    <div class="modal-body table-responsive">
-                                                                        <div class="listing-item" style="width:390px ;">
-                                                                            <table id="detail" class="table table-bordered table-striped" border=1 responsive>
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th>No</th>
-                                                                                        <th>Nama Lapangan</th>
-                                                                                        <th>Deskripsi</th>
-                                                                                        <th>Status</th>
-                                                                                        <th>Opsi</th>
-
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    <?php $nomor = 1;
-                                                                                    foreach ($sewa as $row) : ?>
-                                                                                        <tr>
-                                                                                            <td> <?php echo $nomor++ ?> </td>
-                                                                                            <td> <?php echo $row['nama'] ?> </td>
-                                                                                            <td> <?php echo $row['nama_lapangan'] ?> </td>
-                                                                                            <td> <?php echo "(" . $row['start_time'] . ") - (" . $row['end_time'] . ")" ?> </td>
-                                                                                            `
-                                                                                        </tr>
-                                                                                    <?php endforeach; ?>
-                                                                                </tbody>
-                                                                            </table>
-
+                                                <div class="modal fade" id="add-user">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-info">
+                                                                <h4 class="modal-title">Tambah Dosen Pembimbing</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="box-body">
+                                                                    <form enctype="multipart/form-data" action="<?php echo base_url('panitia/dosbing_add'); ?>" method="post">
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>Nama</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type="text" class="form-control form-control-sm" name="nama">
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    <?php } ?>
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>NIP</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type="number" class="form-control form-control-sm" name="nip" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>Username</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type="text" class="form-control form-control-sm" name="username" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>Password</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type="text" class="form-control form-control-sm" name="password" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
-                                                                        <button class="btn btn-primary">Simpan dan Perbarui</button>
-                                                                    </div>
-                                                                    </div>
 
-                                                                </form>
+
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>Kuota</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input value="1" type="number" class="form-control form-control-sm" name="kuota" required>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <div class="row">
+                                                                                <div class="col-md-3">
+                                                                                    <label>Foto</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type='file' name='image' size='20' />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <button type="submit" class="btn btn-info mr-2">Simpan Data</button>
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                    </form>
+                                                                </div>
 
                                                             </div>
                                                         </div>
+                                                    </div>
                                                 </div>
                                                 <!--===================================================-->
                                                 <!--End Small Bootstrap Modal-->
@@ -150,7 +180,6 @@
                                         } ?>
                                     </tbody>
                                 </table>
-                                <button id="cari" name="cari" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">Tampilkan Modal <i class="bi bi-search"></i></button>
 
                             </div>
                         </div>
@@ -174,7 +203,7 @@
             function proses() {
                 Swal.fire({
                     width: 500,
-                    title: '<strong>Data Ditemukan</strong>',
+                    title: '<strong>DetailPenyewaan</strong>',
                     icon: 'info',
                     html: `
                     <table id="detail" class="table table-bordered table-striped" border=1 responsive>
@@ -219,6 +248,7 @@
                             ?>" +
                         '<label class ="<?php echo $warnaLabelJadwal ?>"> <?php echo $textLabeljadwal ?> </label>' +
                         '</td>' +
+                        '<td> <a href=":;" data-target="#add-user" data-toggle="modal" class="btn btn-icon"><i class="ti-pencil"></i></a> </td>' +
                         '</form>' +
                         `</tr>
                         <?php endforeach; ?>

@@ -5,6 +5,7 @@
 
 
 <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/css/demo/bootstrap.min.css"> -->
 
 
 <!--Nifty Stylesheet [ REQUIRED ]-->
@@ -262,6 +263,7 @@
                         </article>
                     </div>
                 <?php endforeach; ?>
+
 
 
 

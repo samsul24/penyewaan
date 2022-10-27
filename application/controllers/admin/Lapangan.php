@@ -41,6 +41,40 @@ class Lapangan extends CI_Controller
         $this->load->view('admin/lapangan/lapangan', $data);
         $this->load->view('admin/footer', $data);
     }
+    public function sewa1()
+    {
+        $lapangan = $this->lapangan_model->getData();
+
+        $sewa = $this->sewa_model->getDataSewa1()->result_array();
+        $data = array(
+
+            'title'         => "Data Lapangan | Gor-Tombro",
+            'sewa' => $sewa,
+            'lapangan' => $lapangan,
+
+
+        );
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/lapangan/sewa1', $data);
+        $this->load->view('admin/footer', $data);
+    }
+    public function sewa2()
+    {
+        $lapangan = $this->lapangan_model->getData();
+
+        $sewa = $this->sewa_model->getDataSewa2()->result_array();
+        $data = array(
+
+            'title'         => "Data Lapangan | Gor-Tombro",
+            'sewa' => $sewa,
+            'lapangan' => $lapangan,
+
+
+        );
+        $this->load->view('admin/header', $data);
+        $this->load->view('admin/lapangan/sewa2', $data);
+        $this->load->view('admin/footer', $data);
+    }
     public function post()
     {
 
@@ -58,9 +92,14 @@ class Lapangan extends CI_Controller
 
         $this->lapangan_model->insertDataLapangan();
     }
-    function ubah_process()
+    function ubah_process($id_sewa)
     {
 
-        $this->sewa_model->updateDataSewa();
+        $this->sewa_model->updateDataSewa($id_sewa);
+    }
+    function hapus_process($id_sewa)
+    {
+
+        $this->sewa_model->deleteDataSewa($id_sewa);
     }
 }
