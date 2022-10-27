@@ -41,10 +41,10 @@
 <script src="<?php echo base_url('assets/plugins/modal-cross/prowl.js') ?>"></script>
 
 <!-- <script src="<?php echo base_url() ?>assets/js/baru/jquery-slim.min.js"></script> -->
-<script src="<?php echo base_url() ?>assets/js/baru/popper.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/js/baru/popper.min.js"></script> -->
 <!-- <script src="<?php echo base_url() ?>assets/js/baru/bootstrap.min.js"></script> -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(document).ready(function() {
         $("#myModal").modal('show');
     });
-</script>
+</script> -->
