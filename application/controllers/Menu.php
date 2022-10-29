@@ -30,15 +30,27 @@ class Menu extends CI_Controller
     public function jadwal()
     {
         $lapangan = $this->lapangan_model->getDataLapangan();
-
+        $this->data['tanggal'] = array(
+            'name'        => 'tanggal[]',
+            'id'          => 'tanggal',
+            'class'             => 'tanggal',
+            'required'    => '',
+            'autocomplete'    => 'off',
+        );
+        $this->data['jam_mulai'] = array(
+            'name'        => 'jam_mulai[]',
+            'id'          => 'jam_mulai',
+            'class'       => 'jam_mulai',
+            'required'    => '',
+        );
         $data = array(
 
             'title'         => "Halaman Utama | Gor-Tombro",
             'lapangan' => $lapangan
 
         );
+        $this->load->view('menu/jadwal', $this->data);
         // $this->load->view('template/header', $data);
-        $this->load->view('menu/jadwal', $data);
         // $this->load->view('template/footer', $data);
     }
 }

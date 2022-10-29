@@ -26,6 +26,21 @@ class Sewa extends CI_Controller
      */
     public function index()
     {
+
+        // $this->data['tanggal'] = array(
+        //     'name'        => 'tanggal[]',
+        //     'id'          => 'tanggal',
+        //     'class'             => 'tanggal',
+        //     'required'    => '',
+        //     'autocomplete'    => 'off',
+        // );
+        // $this->data['jam_mulai'] = array(
+        //     'name'        => 'jam_mulai[]',
+        //     'id'          => 'jam_mulai',
+        //     'class'       => 'jam_mulai',
+        //     'required'    => '',
+        // );
+
         $lapangan = $this->lapangan_model->getDataLapangan();
         $dataGrup = $lapangan->result_array();
         $dataGrup2 = $this->lapangan_model->getDataLapangan2()->result_array();
@@ -42,6 +57,8 @@ class Sewa extends CI_Controller
             'sewa' => $sewa,
             'sewa2' => $sewa2,
         );
+
+        // $this->load->view('template/header', $this->data);
         $this->load->view('template/header', $data);
         $this->load->view('member/sewa', $data);
         $this->load->view('template/footer', $data);
