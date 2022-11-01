@@ -4,7 +4,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
 
-<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
 <!--Nifty Stylesheet [ REQUIRED ]-->
@@ -15,6 +15,7 @@
 <link href="<?php echo base_url() ?>assets/css/demo/nifty-demo-icons.min.css" rel="stylesheet">
 <!-- wrapper-->
 <!-- wrapper-->
+
 <div id="wrapper">
     <!-- content-->
     <div class="content">
@@ -136,7 +137,7 @@
                                                         <td><?php echo $nomor++ ?></td>
                                                         <td><?php echo $row['nama'] ?></td>
                                                         <td><?php echo $row['nama_lapangan'] ?></td>
-                                                        <td><?php echo "(" . $row['start_time'] . ") - (" . $row['end_time'] . ")" ?></td>
+                                                        <td><?php echo "(" . $row['jam_mulai'] . ") - (" . $row['jam_selesai'] . ")" ?></td>
 
                                                     </tr>
 
@@ -237,22 +238,25 @@
                                             // if ($sewa['id_lapangan'] == $rows['id_lapangan']) {
 
                                             $nomor = 1;
-                                            foreach ($sewa2 as $row) : ?>
+                                            foreach ($sewa2 as $row) :
+                                                if ($row['status'] == "disetujui") {
+                                            ?>
 
-                                                <tr>
-                                                    <td><?php echo $nomor++ ?></td>
-                                                    <td><?php echo $row['nama'] ?></td>
-                                                    <td><?php echo $row['nama_lapangan'] ?></td>
-                                                    <td><?php echo "(" . $row['start_time'] . ") - (" . $row['end_time'] . ")" ?></td>
+                                                    <tr>
+                                                        <td><?php echo $nomor++ ?></td>
+                                                        <td><?php echo $row['nama'] ?></td>
+                                                        <td><?php echo $row['nama_lapangan'] ?></td>
+                                                        <td><?php echo "(" . $row['jam_mulai'] . ") - (" . $row['jam_selesai'] . ")" ?></td>
 
-                                                </tr>
+                                                    </tr>
 
-                                                <!--Small Bootstrap Modal-->
-                                                <!--===================================================-->
+                                                    <!--Small Bootstrap Modal-->
+                                                    <!--===================================================-->
 
-                                                <!--===================================================-->
-                                                <!--End Small Bootstrap Modal-->
-                                            <?php endforeach;
+                                                    <!--===================================================-->
+                                                    <!--End Small Bootstrap Modal-->
+                                            <?php  }
+                                            endforeach;
                                             // }
                                             ?>
                                         </tbody>
@@ -262,11 +266,6 @@
                         </article>
                     </div>
                 <?php endforeach; ?>
-
-
-
-
-
 
                 <!-- listing-item end -->
 
@@ -282,7 +281,7 @@
                                 <!-- <img src="<?php echo base_url() ?>assets/img/futsal2.png" alt="logo" style="width: 100px"> -->
                                 <br>
                                 <h1 class="h3">Pesan Sekarang</h1>
-                                <p>Misi data dibawah ini dengan benar</p>
+                                <p>Isi data dibawah ini dengan benar</p>
                             </div>
                             <hr>
                             <?php echo $this->session->userdata('msg') ?>
@@ -291,45 +290,50 @@
                                     <div class="custom-form">
                                         <div class="form-group">
                                             <p class="text-semibold" style="text-align:left;">Lapangan</p>
-                                            <div class="listsearch-input-item ">
-                                                <select data-placeholder="Data Lapangan" name="id_lapangan" class="chosen-select no-search-select" required="">
+                                            <div>
+
+                                                <select name="id_lapangan[]" class="id_lapangan" required="">
                                                     <option value="">-- Pilih Lokasi Lapangan --</option>
 
                                                     <?php foreach ($pilih->result_array() as $rowLapangan) : ?>
                                                         <option value="<?php echo $rowLapangan['id_lapangan'] ?>"><?php echo $rowLapangan['nama_lapangan'] ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
+
                                             </div>
                                             <input type="hidden" class="form-control" name="id_user" value="<?php echo  $this->session->userdata('sess_id_user') ?>" placeholder="Masukkan nama pemesan" required="" />
-                                            <input type="hidden" class="form-control" name="status" value="belum_disetujui" placeholder="Masukkan nama pemesan" required="" />
+                                            <input type="hidden" class="form-control" name="status[]" value="belum_disetujui" placeholder="Masukkan nama pemesan" required="" />
                                             <div class="form-group">
                                                 <p class="text-semibold" style="text-align:left;">Nama Pemesan</p>
-                                                <input type="text" class="form-control" name="nama" value="<?php echo  $this->session->userdata('sess_username') ?>" placeholder="Masukkan nama pemesan" required="" />
+                                                <input type="text" class="form-control" name="nama[]" value="<?php echo  $this->session->userdata('sess_username') ?>" placeholder="Masukkan nama pemesan" required="" />
                                             </div>
                                             <div class="form-group">
 
                                                 <p class="text-semibold" style="text-align:left;">Tanggal</p>
-                                                <!-- <?php echo form_input($tanggal) ?> -->
-
-                                                <input type="date" class="form-control" name="tanggal" placeholder="Masukkan nama lapangan" required="" />
+                                                <?php echo form_input($tanggal) ?>
                                             </div>
                                             <div class="form-group">
-                                                <p class="text-semibold" style="text-align:left;">Jam</p>
-                                            </div>
-                                            <?php date_default_timezone_set("Asia/Jakarta"); ?>
 
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <input type="time" class="form-control" name="start_time" value="<?php echo date("07:00"); ?>" placeholder="Masukkan nama lapangan" required="" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input class="form-control" value="=" readonly />
-                                            </div>
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <input type="time" class="form-control" name="end_time" value="<?php echo date("23:00"); ?>" placeholder="Masukkan nama lapangan" required="" />
-                                                </div>
+                                                <table id="datatable" class="table table-striped table-bordered">
+                                                    <tr>
+                                                        <th style="text-align: center;">Jam Mulai</th>
+                                                        <th style="text-align: center;">durasi</th>
+                                                        <th style="text-align: center;">Jam Selesai</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align:center">
+                                                            <?php echo form_dropdown('', array('' => '- Pilih Tanggal Dulu -'), '', $jam_mulai); ?>
+                                                            <span class="loading_container" style="display:none;">
+                                                                <img src="<?php echo base_url(); ?>assets/images/loading.gif" style="display:inline;" />&nbsp;memuat data ...</span>
+                                                        </td>
+                                                        <td style="text-align:center">
+                                                            <input style="width:20px ;" type="number" name="durasi" class="durasi" min="1">
+                                                        </td>
+                                                        <td style="text-align:center" class="jam_selesai"></td>
+
+                                                    </tr>
+                                                </table>
+
                                             </div>
                                             <?php if (empty($this->session->userdata('sess_id_user'))) { ?>
                                                 <button class="btn btn-primary btn-block" type="button" onClick="return confirm('Harap Login Terlebih Dahulu');" readonly>Pesan</button>
@@ -351,7 +355,7 @@
 
             </div>
         </div>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/style1.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -412,15 +416,18 @@
             durasi_el = tanggal_el.parent().parent().find(".durasi");
             jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
             loading_container_el = tanggal_el.parent().parent().find(".loading_container");
-            lapangan_id_el = tanggal_el.parent().parent().find(".lapangan_id");
+            lapangan_id_el = tanggal_el.parent().parent().find(".id_lapangan");
+
 
             jam_mulai_el.hide();
             loading_container_el.show();
 
-            $.post('<?php echo base_url(); ?>Cart/getJamMulai', {
+            $.post('<?php echo base_url(); ?>member/Sewa/getJamMulai', {
                     tanggal: tanggal_val,
-                    lapangan_id: lapangan_id_el.val()
-                }, function(data) {
+                    id_lapangan: lapangan_id_el.val()
+
+                },
+                function(data) {
                     jam_mulai_el.show();
                     loading_container_el.hide();
                     jam_mulai_el.html("");
@@ -430,7 +437,7 @@
                     count = 0;
 
                     data.forEach(function(item, index) {
-                        // console.log(item);
+                        console.log(item);
                         jam_mulai_el.append("<option durasi='" + item.durasi + "'>" + item.jam_mulai + "</option>");
                         count++;
                     });
@@ -466,41 +473,9 @@
             jam_mulai_el = durasi_el.parent().parent().find(".jam_mulai");
             jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
 
-            harga_per_jam_el = durasi_el.parent().parent().find(".harga_per_jam");
-            subtotal_el = durasi_el.parent().parent().find(".subtotal");
-
             if (jam_mulai_el.val() != "") {
-                jam_selesai = moment("01-01-2018 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss").add(parseInt(durasi), 'hours').format('HH:mm:ss');
+                jam_selesai = moment("01-01-2022 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss").add(parseInt(durasi), 'hours').format('HH:mm:ss');
                 jam_selesai_el.html(jam_selesai);
-
-                harga_per_jam = harga_per_jam_el.html().replace(/,/g, '');
-                harga_per_jam_int = parseInt(harga_per_jam);
-
-                subtotal_el.html(numberWithCommas(harga_per_jam_int * parseInt(durasi)));
-
-                subtotal_bawah = 0;
-                $('.subtotal').each(function(i, obj) {
-                    a_subtotal_html = $(this).html().trim().replace(/,/g, '');
-                    if (a_subtotal_html == "") {
-                        a_subtotal_html = "0";
-                    }
-
-                    a_subtotal_html_int = parseInt(a_subtotal_html);
-                    subtotal_bawah += a_subtotal_html_int;
-                });
-
-                <?php if ($this->session->userdata('usertype') == '3') {
-                    echo "var disc = '" . $diskon['harga'] . "';"; ?>
-                <?php } else {
-                    echo "var disc = '0';";
-                } ?>
-
-                var diskon = $('#diskon').val();
-
-                $("#subtotal_bawah").html(numberWithCommas(subtotal_bawah));
-                $("#diskon").html(numberWithCommas(disc));
-                var gtotal = (subtotal_bawah - disc);
-                $("#grandtotal").html(numberWithCommas(gtotal));
             }
         });
     });

@@ -13,6 +13,7 @@ class lapangan_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('lapangan');
+
         // $this->db->join('data_sewa', 'data_sewa.id_lapangan = lapangan.id_lapangan', 'left');
         $query = $this->db->get();
 
@@ -23,6 +24,7 @@ class lapangan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('lapangan');
         $this->db->where('id_lapangan', 1);
+        $this->db->where('status_lapangan', 'tersedia');
         $query = $this->db->get();
 
         return $query;
@@ -32,6 +34,8 @@ class lapangan_model extends CI_Model
         $this->db->select('*');
         $this->db->from('lapangan');
         $this->db->where('id_lapangan', 2);
+        $this->db->where('status_lapangan', 'tersedia');
+
         $query = $this->db->get();
 
         return $query;
@@ -74,7 +78,7 @@ class lapangan_model extends CI_Model
 
             'nama_lapangan'     => $this->input->post('nama_lapangan'),
             'deskripsi_lapangan' => $this->input->post('deskripsi_lapangan'),
-            'status_lapangan'   => $this->input->post('status'),
+            'status_lapangan'   => $this->input->post('status_lapangan'),
             'gambar_lapangan'   =>  $gambar,
             'date'   =>  time(),
         );
@@ -98,7 +102,7 @@ class lapangan_model extends CI_Model
 
 
         // get data informasi lapangan
-        $sql = "SELECT * FROM data_lapangan WHERE id_lapangan = '$id_lapangan'";
+        $sql = "SELECT * FROM lapangan WHERE id_lapangan = '$id_lapangan'";
         $ambilDataLapangan = $this->db->query($sql)->row_array();
 
         // hapus file lama
@@ -113,7 +117,7 @@ class lapangan_model extends CI_Model
 
 
         $this->db->where('id_lapangan', $id_lapangan);
-        $this->db->delete('data_lapangan');
+        $this->db->delete('lapangan');
 
 
         // pemberitahuan
@@ -131,7 +135,7 @@ class lapangan_model extends CI_Model
 
 
         // get data informasi lapangan
-        $sql = "SELECT * FROM data_lapangan WHERE id_lapangan = '$id_lapangan'";
+        $sql = "SELECT * FROM lapangan WHERE id_lapangan = '$id_lapangan'";
         $ambilDataLapangan = $this->db->query($sql)->row_array();
 
         // inisialisasi variabel 
@@ -179,14 +183,14 @@ class lapangan_model extends CI_Model
         $nilaiTabelLapangan = array(
 
             'nama_lapangan'     => $this->input->post('nama_lapangan'),
-            'alamat_lapangan'   => $this->input->post('lokasi'),
-            'gambar_lapangan'   => $userfile,
-            'deskripsi_lapangan' => $this->input->post('deskripsi'),
-            'status_lapangan'   => $this->input->post('status')
+            'deskripsi_lapangan' => $this->input->post('deskripsi_lapangan'),
+            'status_lapangan'   => $this->input->post('status_lapangan'),
+            'gambar_lapangan'   =>  $userfile,
+            'date'   =>  time(),
         );
 
         $this->db->where('id_lapangan', $id_lapangan);
-        $this->db->update('data_lapangan', $nilaiTabelLapangan);
+        $this->db->update('lapangan', $nilaiTabelLapangan);
 
 
         // pemberitahuan

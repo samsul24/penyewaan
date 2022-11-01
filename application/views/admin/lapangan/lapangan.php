@@ -1,265 +1,147 @@
-        <!--CONTENT CONTAINER-->
-        <!--===================================================-->
-        <div id="content-container">
-
-            <div id="page-head">
-
-                <div class="text-center">
-                    <h3>Data Lapangan.</h3>
-                    <p>Merekap secara keseluruhan data lapangan yang ada di malang.</p>
-                </div>
-
+<!-- Begin Page Content -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="container-fluid">
+    </script>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Lapangan</h1>
+        <small>
+            <div class="text-muted"> Manajemen Data &nbsp;/&nbsp; <a href="<?php echo base_url("admin/lapangan"); ?>">Lapangan</a>
             </div>
-            <?php
-            // var_dump($sewa2);
-            // exit; 
-            ?>
+        </small>
+    </div>
 
-            <!--Page content-->
-            <!--===================================================-->
-            <div id="page-content">
 
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <!--Start-->
-                        <!--===================================================-->
-                        <div class="panel">
-                            <!--Chart information-->
-                            <div class="panel-body">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Berikut merupakan data lapangan</h6>
+        </div>
+        <div class="card-body border-bottom-primary">
+            <?= $this->session->flashdata('message'); ?>
+            <p>
 
-                                <?php echo $this->session->flashdata('msg') ?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped " id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="text-primary" style=" text-align: center;">No.</th>
+                            <th class="text-primary" style=" text-align: center;">Nama lapangan</th>
+                            <th class="text-primary" style=" text-align: center;">Deskripsi</th>
+                            <th class="text-primary" style=" text-align: center;">Status</th>
+                            <th class="text-primary" style=" text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1;
+                        foreach ($lapangan->result_array() as $row) : ?>
+                            <tr>
+                                <td style=" text-align: center;"><?= $no++ ?></td>
+                                <td><?= $row['nama_lapangan'] ?>
+                                    <br>
+                                    <?php
 
-                                <h4 class="">Tabel Lapangan</h4>
-                                <label>Menampilkan daftar lapangan</label> <br>
+                                    if ($row['gambar_lapangan']) {
 
-                                <!-- <a href=" <?= base_url('admin/lapangan/post'); ?>" class="btn btn-primary btn-sm btn-labeled"><i class="btn-label ti-plus"></i>Tambah Lapangan Baru</a> <br><br> -->
-                                <!--Small Bootstrap Modal-->
-                                <table class=" table" id="active-datatable" width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Lapangan</th>
-                                            <th>Deskripsi</th>
-                                            <th>Status</th>
-                                            <!-- <th>Opsi</th> -->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($lapangan->num_rows() > 0) {
+                                        $link = base_url('assets/images/lapangan/' . $row['gambar_lapangan']);
+                                        echo '<a class="btn-link text-sm text-main" href="' . $link . '" target="_blank">lihat gambar lapangan</a>';
+                                    } else {
 
-                                            $nomor = 1;
-                                            foreach ($lapangan->result_array() as $row) :
-                                        ?>
-                                                <tr>
-                                                    <td><?php echo $nomor++ ?></td>
-                                                    <td><?php echo $row['nama_lapangan'] ?>
-                                                        <br>
-                                                        <?php
+                                        echo '<small class="text-muted">tidak memiliki gambar</small>';
+                                    }
+                                    ?>
+                                </td>
+                                <td><?php echo $row['deskripsi_lapangan'] ?></td>
+                                <?php if ($row['status_lapangan'] == "tersedia") : ?>
+                                    <td class="project-state" style=" text-align: center;">
+                                        <span class="badge badge-success">Tersedia</span>
+                                    </td>
+                                <?php else : ?>
+                                    <td class="project-state" style=" text-align: center;">
+                                        <span class="badge badge-danger">Ditutup</span>
+                                    </td>
+                                <?php endif ?>
 
-                                                        if ($row['gambar_lapangan']) {
 
-                                                            $link = base_url('assets/images/lapangan/' . $row['gambar_lapangan']);
-                                                            echo '<a class="btn-link text-sm text-main" href="' . $link . '" target="_blank">lihat gambar lapangan</a>';
-                                                        } else {
 
-                                                            echo '<small class="text-muted">tidak memiliki gambar</small>';
-                                                        }
-                                                        ?>
-                                                    </td>
-                                                    <td><?php echo $row['deskripsi_lapangan'] ?></td>
-                                                    <td>
-                                                        <?php
+                                <td style=" text-align: center;">
+                                    <a class=' btn-circle btn-primary' data-target="#ubah-data-<?php echo $row['id_lapangan'] ?>" data-toggle="modal">
+                                        <i class="fas fa-PEN" aria-hidden="true" style="color: white;"></i>
+                                    </a>
+                                </td>
+                            </tr>
 
-                                                        $warnaLabel = "";
-                                                        $textLabel  = "";
-                                                        if ($row['status_lapangan'] == "tersedia") {
+                            <div id="ubah-data-<?php echo $row['id_lapangan'] ?>" class="modal fade" tabindex="-1">
+                                <div class="modal-dialog modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="mySmallModalLabel">Sunting Lapangan</h4>
+                                        </div>
+                                        <form action="<?php echo base_url('admin/lapangan/ubah_process/' . $row['id_lapangan']) ?>" method="POST" enctype="multipart/form-data">
+                                            <div class="modal-body">
+                                                <p>Isi form dibawah ini untuk menambah data lapangan.</p>
 
-                                                            $warnaLabel = "label label-success";
-                                                            $textLabel  = "Tersedia";
-                                                        } else {
-                                                            $warnaLabel = "label label-default";
-                                                            $textLabel  = "Tidak Tersedia";
-                                                        }
-                                                        ?>
+                                                <input type="hidden" class="form-control" name="id_lapangan" value="<?php echo $row['id_lapangan'] ?>" readonly />
+                                                <input type="hidden" class="form-control" name="date" value="<?php echo $row['date'] ?>" readonly />
 
-                                                        <label class="<?php echo $warnaLabel ?>"><?php echo $textLabel ?></label>
-                                                    </td>
-                                                    <!-- <td>
-                                                        <a href=":;" data-target="#add-user" data-id="<?php echo $row['id_lapangan']; ?>" data-toggle="modal" class="btn btn-icon"><i class="ti-pencil"></i></a>
-                                                        <a href="<?php echo $row['id_lapangan'] ?>" data-target="<?php echo $row['id_lapangan'] ?>" onclick="proses()" data-toggle="modal" class="btn btn-icon"><i class="ti-eye"></i></a>
-                                                        <a href="<?php echo base_url('admin/lapangan/proseshapus/' . $row['id_lapangan']) ?>" class="btn btn-icon" onclick="return confirm('Apakah anda yakin ingin menghapus lapangan <?php echo $row['nama_lapangan'] ?>')"><i class="ti-trash"></i></a>
-                                                    </td> -->
-                                                </tr>
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Nama Lapangan</label>
+                                                    <input type="text" class="form-control" name="nama_lapangan" value="<?php echo $row['nama_lapangan'] ?>" placeholder="Masukkan nama lapangan" required="" />
+                                                    <small>Berisi nama lapangan</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="text-semibold">Deskripsi</label>
+                                                    <input type="text" class="form-control" name="deskripsi_lapangan" value="<?php echo $row['deskripsi_lapangan'] ?>" required="" />
+                                                    <small>Berisi deskripsi lapangan</small>
+                                                </div>
 
-                                                <!--Small Bootstrap Modal-->
-                                                <!--===================================================-->
-                                                <div class="modal fade" id="add-user">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-info">
-                                                                <h4 class="modal-title">Tambah Dosen Pembimbing</h4>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label class="text-semibold">Status Lapangan</label>
+                                                            <div class="radio">
+
+                                                                <!-- Inline radio buttons -->
+                                                                <input id="demo-inline-form-radio<?php echo $row['id_lapangan'] ?>" class="magic-radio" type="radio" name="status_lapangan" value="tersedia" <?php if ($row['status_lapangan']  == "tersedia") {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                                                <label for="demo-inline-form-radio<?php echo $row['id_lapangan'] ?>">Tersedia</label>
+
+                                                                <input id="demo-inline-form-radio-2<?php echo $row['id_lapangan'] ?>" class="magic-radio" type="radio" name="status_lapangan" value="tidak_tersedia" <?php if ($row['status_lapangan']  == "tidak_tersedia") {
+                                                                                                                                                                                                                            echo 'checked';
+                                                                                                                                                                                                                        } ?>>
+                                                                <label for="demo-inline-form-radio-2<?php echo $row['id_lapangan'] ?>">Belum Tersedia</label> <br>
+                                                                <small>Pilih status Sewa saat ini</small>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <div class="box-body">
-                                                                    <form enctype="multipart/form-data" action="<?php echo base_url('panitia/dosbing_add'); ?>" method="post">
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>Nama</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input type="text" class="form-control form-control-sm" name="nama">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>NIP</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input type="number" class="form-control form-control-sm" name="nip" required>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>Username</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input type="text" class="form-control form-control-sm" name="username" required>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>Password</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input type="text" class="form-control form-control-sm" name="password" required>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
 
-
-
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>Kuota</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input value="1" type="number" class="form-control form-control-sm" name="kuota" required>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <div class="row">
-                                                                                <div class="col-md-3">
-                                                                                    <label>Foto</label>
-                                                                                </div>
-                                                                                <div class="col-md-9">
-                                                                                    <input type='file' name='image' size='20' />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <button type="submit" class="btn btn-info mr-2">Simpan Data</button>
-                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                    </form>
-                                                                </div>
-
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!--===================================================-->
-                                                <!--End Small Bootstrap Modal-->
-                                        <?php endforeach;
-                                        } ?>
-                                    </tbody>
-                                </table>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="text-semibold">Gambar</label>
+                                                        <input type="file" class="form-control" name="userfile" />
+                                                        <small>Pilih gambar</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+                                                <button class="btn btn-primary">Simpan dan Perbarui</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+                <br>
+                <div class="alert alert-primary" role="alert">
+                    <p><b>*Catatan :</b>&nbsp;Pada tabel lapangan hanya bisa mengubah data. </p>
                 </div>
             </div>
         </div>
-
-        <head>
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        </head>
-
-        <body>
-            <!-- Membuat Tombol Penampil -->
-            <button id="cari" name="cari" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center" onclick="proses()">Tampilkan Modal <i class="bi bi-search"></i></button>
-        </body>
-
-        </html>
-
-        <script>
-            function proses() {
-                Swal.fire({
-                    width: 500,
-                    title: '<strong>DetailPenyewaan</strong>',
-                    icon: 'info',
-                    html: `
-                    <table id="detail" class="table table-bordered table-striped" border=1 responsive>
-
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Lapangan</th>
-                    <th>Tanggal</th>
-                    <th>Waktu</th>
-                    <th>Status</th>
-                    <th>Opsi</th>
-                
-                </tr>
-            </thead>
-            <tbody>
-
-            <?php $nomor = 1;
-            foreach ($sewa as $row) : ?>
-
-                <tr>
-                ` +
-                        '<td>' + "<?php echo $nomor++ ?>" + '</td>' +
-                        '<td>' + "<?php echo $row['nama'] ?>" + '</td>' +
-                        '<td>' + "<?php echo $row['nama_lapangan'] ?>" + '</td>' +
-                        '<td>' + "<?php echo $row['tanggal'] ?>" + '</td>' +
-                        '<td>' + "<?php echo "(" . $row['start_time'] . ") - (" . $row['end_time'] . ")" ?>" + '</td>' +
-                        '<td>' +
-                        "<?php
-
-                            $warnaLabelJadwal = "";
-                            $textLabeljadwal  = "";
-                            if ($row['status'] == "disetujui") {
-
-                                $warnaLabelJadwal = "label label-success";
-                                $textLabeljadwal  = "Disetujui";
-                            } else {
-                                $warnaLabelJadwal = "label label-default";
-                                $textLabeljadwal  = "Belum Disetujui";
-                            }
-                            ?>" +
-                        '<label class ="<?php echo $warnaLabelJadwal ?>"> <?php echo $textLabeljadwal ?> </label>' +
-                        '</td>' +
-                        '<td> <a href=":;" data-target="#add-user" data-toggle="modal" class="btn btn-icon"><i class="ti-pencil"></i></a> </td>' +
-                        '</form>' +
-                        `</tr>
-                        <?php endforeach; ?>
-    </tbody>
-    </table>`,
-                    showCloseButton: true,
-                    showCancelButton: false,
-                    focusConfirm: false,
-                    confirmButtonAriaLabel: 'Thumbs up, great!',
-                    cancelButtonText: '<i class="fa fa-thumbs-down"></i>',
-                    cancelButtonAriaLabel: 'Thumbs down'
-                })
-            }
-        </script>
+    </div>
+</div>

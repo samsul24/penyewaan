@@ -33,9 +33,11 @@ class Pengumuman extends CI_Controller
             'pengumuman' => $pengumuman
 
         );
-        $this->load->view('admin/header', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('admin/pengumuman/pengumuman', $data);
-        $this->load->view('admin/footer', $data);
+        $this->load->view('templates/footer', $data);
     }
     public function post()
     {
@@ -44,14 +46,26 @@ class Pengumuman extends CI_Controller
 
             'title'         => "Tambah Data Pengumuman | Gor-Tombro",
         );
-        $this->load->view('admin/header', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('admin/pengumuman/post_pengumuman', $data);
-        $this->load->view('admin/footer', $data);
+        $this->load->view('templates/footer', $data);
     }
     // proses tambah
     function tambah_process()
     {
 
         $this->pengumuman_model->insertDataPengumuman();
+    }
+    function ubah_process($id)
+    {
+
+        $this->pengumuman_model->updateDataPengumuman($id);
+    }
+    function hapus_process($id)
+    {
+
+        $this->pengumuman_model->deleteDataPengumuman($id);
     }
 }

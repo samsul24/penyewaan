@@ -14,9 +14,11 @@
     <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/plugins.css">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/style.css">
     <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/color.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/style1.css">
 
     <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/home/css/dashboard-style.css">
     <!--=============== favicons ===============-->
+    <link href="<?php echo base_url() ?>assets/css/nifty.min.css" rel="stylesheet">
 
 
 
@@ -38,28 +40,19 @@
             <div class="loader-inner-cirle"></div>
         </div>
     </div>
-    <!--loader end-->
-    <!-- main start  -->
+
     <div id="main">
-        <!-- header -->
+
         <header class="main-header">
-            <!-- logo-->
-            <a href="index.html" class="logo-holder">
 
-            </a>
-            <!-- logo end-->
-            <!-- header-search_btn-->
-
-            <!-- header-search_btn end-->
-
-
+            <a href="index.html" class="logo-holder"></a>
             <?php if (empty($this->session->userdata('sess_username'))) { ?>
-                <div class="show-reg-form "><i class="fal fa-user"></i><a style="color:aliceblue" href="<?php echo site_url(); ?>Login">Login</a></div>
+                <div class="show-reg-form modal-open avatar-img "><i class=" fal fa-user"></i><a style="color:aliceblue" href="<?php echo site_url(); ?>Login">Login</a></div>
             <?php } ?>
-            <!-- header opt end-->
+
 
             <?php if ($this->session->userdata('sess_username')) { ?>
-                <!-- header opt -->
+
                 <div class="header-user-menu">
                     <div class="header-user-name">
                         <span><img src="<?php echo $this->session->userdata('sess_foto') ?>" alt=""></span>
@@ -70,26 +63,39 @@
                         <li><a href="<?php echo base_url('login/out_process ') ?>">Log Out</a></li>
                     </ul>
                 </div>
-                <!-- header opt end-->
-            <?php } ?>
-            <div class="header-user-menu">
-                <div class="dropdown">
-                    <div class="facilities-list fl-wrap">
-                        <a href="#sec1" style="color:white;"><i class="far fa-bell"></i></a>
 
-                        <div id="pesan" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        </div>
-                    </div>
+            <?php } ?>
+            <div class="header-user-menu1" style="width:30px ;">
+                <div class="header-user-name1">
+                    <?php $this->db->select('*');
+                    $this->db->where('status', 'belum_selesai');
+                    $query = $this->db->get('pengumuman');
+
+                    ?>
+                    <a href="#sec1" style="color:white;"><i class="far fa-bell"></i>&nbsp;&nbsp;<?= $num = $query->num_rows(); ?></a>
                 </div>
+                <?php $pengumuman = $this->db->get('pengumuman')->result_array(); ?>
+                <ul style="width: 200px; background-color:ghostwhite;  box-shadow:   5px 5px 12px 2px #1f2833;">
+                    <l1>
+                        <h3><b>Pengumuman</b></h3>
+                        <br>
+                    </l1>
+                    <?php foreach ($pengumuman as $row) :
+                        if ($row['status'] == "belum_selesai") { ?>
+                            <li>
+                                <hr><a href="" style=" ;"><b>Subjek : </b> &nbsp; <b><?php echo $row['objek'] ?>.</a></b>
+                                <br><a>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $row['deskripsi'] ?></a><br>
+                            </li>
+                    <?php }
+                    endforeach; ?>
+                </ul>
             </div>
-            <!-- nav-button-wrap-->
+
             <div class="nav-button-wrap color-bg">
                 <div class="nav-button">
                     <span></span><span></span><span></span>
                 </div>
             </div>
-            <!-- nav-button-wrap end-->
-            <!--  navigation -->
             <div class="nav-holder main-menu">
                 <nav>
                     <ul class="no-list-style">
@@ -112,4 +118,5 @@
                     </ul>
                 </nav>
             </div>
+
         </header>

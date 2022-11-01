@@ -73,7 +73,8 @@ class Login extends CI_Controller
                     'sess_level'    => $kolom['level'],
                     'sess_username' => $kolom['username'],
                     'sess_name'     => $kolom['nama_lengkap'],
-                    'sess_foto'     => $link
+                    'sess_foto'     => $link,
+                    'email' => $kolom['email'],
                 );
 
                 // pasang session 
@@ -95,6 +96,17 @@ class Login extends CI_Controller
             $this->session->set_flashdata('msg', '<span style="color: #ef5350">Username tidak ditemukan !</span>');
             redirect(base_url() . '?page=starter');
         }
+    }
+    public function registrasi()
+    {
+
+        $data = array(
+
+            'title'         => "Login | Gor-Tombro",
+        );
+        $this->load->view('template/header', $data);
+        $this->load->view('login/registrasi', $data);
+        $this->load->view('template/footer', $data);
     }
     function out_process()
     {

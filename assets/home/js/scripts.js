@@ -122,7 +122,7 @@ function initTowhub() {
                 prevEl: '.listing-carousel-button-prev',
             },
         });
-		j3.init();
+        j3.init();
     }
     if ($(".slider-widget").length > 0) {
         var j4 = new Swiper(".slider-widget .swiper-container", {
@@ -386,14 +386,14 @@ function initTowhub() {
         e.preventDefault();
         $(".show-more-snopt-tooltip").toggleClass("show-more-snopt-tooltip_vis");
     });
- // calc ------------------
+    // calc ------------------
     $("form[name=rangeCalc]").jAutoCalc("destroy");
     $("form[name=rangeCalc]").jAutoCalc({
         initFire: true,
         decimalPlaces: 1,
         emptyAsZero: false
     });
- // date picker------------------
+    // date picker------------------
     $('input[name="datepicker-here"]').daterangepicker({
         autoUpdateInput: false,
         parentEl: $(".date-container"),
@@ -586,7 +586,7 @@ function initTowhub() {
         vch.css("height", $(window).height() + "px");
         vch.css("width", 1280 / 720 * $(window).height()) + "px";
     }
- // scroll animation ------------------
+    // scroll animation ------------------
     $(".scroll-init  ul ").singlePageNav({
         filter: ":not(.external)",
         updateHash: false,
@@ -734,25 +734,25 @@ function initTowhub() {
         $(".lws_mobile").slideToggle(400);
         $(this).toggleClass("slsw_vis");
     });
-	$(".show-lpt").on("click", function (e) {
-		e.preventDefault();
+    $(".show-lpt").on("click", function (e) {
+        e.preventDefault();
         $(".lost-password-tootip").addClass("lpt_vis");
     });
-	$(".close-lpt").on("click", function () {
+    $(".close-lpt").on("click", function () {
         $(".lost-password-tootip").removeClass("lpt_vis");
     });
- 
-	//   Uplaod ------------------
-	$('.fuzone input').each(function () {
-		$(this).on('change', function () {
-			var pufzone = $(this).parents(".fuzone").find('.photoUpload-files');
-			pufzone.empty();
-			var files = $(this)[0].files;
-			for (var i = 0; i < files.length; i++) {
-				$("<span></span>").text(files[i].name).appendTo(pufzone);
-			}
-		});
-	});
+
+    //   Uplaod ------------------
+    $('.fuzone input').each(function () {
+        $(this).on('change', function () {
+            var pufzone = $(this).parents(".fuzone").find('.photoUpload-files');
+            pufzone.empty();
+            var files = $(this)[0].files;
+            for (var i = 0; i < files.length; i++) {
+                $("<span></span>").text(files[i].name).appendTo(pufzone);
+            }
+        });
+    });
     $(".submenu-link").on("click", function (ef) {
         ef.preventDefault();
         $(this).toggleClass("sl_tog");
@@ -786,7 +786,7 @@ function initTowhub() {
             });
         }
     });
-// booking -----------------
+    // booking -----------------
     var current_fs, next_fs, previous_fs;
     var left, opacity, scale;
     var animating;
@@ -947,7 +947,7 @@ function initTowhub() {
             }
         });
     } else $(".fixed-bar").removeClass("fixbar-action");
-// filter show -----------------
+    // filter show -----------------
     var shf = $(".shsb_btn"),
         ahimcocn = $(".anim_clw"),
         mapover = $(".map-overlay , .close_sbfilters");
@@ -968,12 +968,12 @@ function initTowhub() {
     mapover.on("click", function () {
         hidehiddenfilters();
     });
-// niceselect -----------------
+    // niceselect -----------------
     $(".url_btn").on("click", function (e) {
         e.preventDefault();
     });
     $('.chosen-select').niceSelect();
-// rangeslider -----------------
+    // rangeslider -----------------
     $(".range-slider").ionRangeSlider({
         type: "double",
         keyboard: true
@@ -989,7 +989,7 @@ function initTowhub() {
             "$", "$$", "$$$", "$$$$"
         ],
     });
-//click -----------------
+    //click -----------------
     $('.toggle-filter-btn').on("click", function (e) {
         e.preventDefault();
         $(this).toggleClass("tsb_act");
@@ -1000,7 +1000,7 @@ function initTowhub() {
     $('.init-dsmen').on("click", function () {
         $(".user-profile-menu-wrap").slideToggle(400);
     });
-// chat -----------------
+    // chat -----------------
     var chatwidwrap = $(".chat-widget_wrap"),
         cahtwidbutton = $(".chat-widget-button");
 
@@ -1096,6 +1096,10 @@ function initTowhub() {
         $(".header-user-menu ul").toggleClass("hu-menu-vis");
         $(this).toggleClass("hu-menu-visdec");
     });
+    $(".header-user-name1").on("click", function () {
+        $(".header-user-menu1 ul").toggleClass("hu-menu-vis");
+        $(this).toggleClass("hu-menu-visdec");
+    });
     // Counter ------------------
     if ($(".counter-widget").length > 0) {
         var countCurrent = $(".counter-widget").attr("data-countDate");
@@ -1104,7 +1108,7 @@ function initTowhub() {
             offset: 0
         });
     }
-// open hours -----------------
+    // open hours -----------------
     if ($(".opening-hours").length > 0) {
         var d = new Date();
         var weekday = new Array(7);
@@ -1117,7 +1121,7 @@ function initTowhub() {
         weekday[6] = "sat";
         document.getElementsByClassName(weekday[d.getDay()])[0].classList.add("todaysDay");
     }
-// qty -----------------
+    // qty -----------------
     $('.quantity-item').each(function () {
         var spinner = $(this),
             input = spinner.find('input[type="text"]'),
@@ -1149,7 +1153,7 @@ function initTowhub() {
     $(".qty-dropdown-header").on("click", function () {
         $(this).parent(".qty-dropdown").find(".qty-dropdown-content").slideToggle(400);
     });
-// bubbles -----------------
+    // bubbles -----------------
     var bArray = [];
     var sArray = [2, 4, 6, 8];
     for (var i = 0; i < $('.bubbles').width(); i++) {
@@ -1287,7 +1291,7 @@ $(".notification-close").on("click", function () {
 });
 
 $(".romms-select_header").on("click", function () {
-	$(this).toggleClass("vis-room_select")
+    $(this).toggleClass("vis-room_select")
     $(this).parent(".romms-select_item").find(".romms-select_content").slideToggle(400);
 });
 

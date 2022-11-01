@@ -37,69 +37,20 @@ class Lapangan extends CI_Controller
             'sewa2' => $sewa2
 
         );
-        $this->load->view('admin/header', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
         $this->load->view('admin/lapangan/lapangan', $data);
-        $this->load->view('admin/footer', $data);
+        $this->load->view('templates/footer');
     }
-    public function sewa1()
-    {
-        $lapangan = $this->lapangan_model->getData();
-
-        $sewa = $this->sewa_model->getDataSewa1()->result_array();
-        $data = array(
-
-            'title'         => "Data Lapangan | Gor-Tombro",
-            'sewa' => $sewa,
-            'lapangan' => $lapangan,
-
-
-        );
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/lapangan/sewa1', $data);
-        $this->load->view('admin/footer', $data);
-    }
-    public function sewa2()
-    {
-        $lapangan = $this->lapangan_model->getData();
-
-        $sewa = $this->sewa_model->getDataSewa2()->result_array();
-        $data = array(
-
-            'title'         => "Data Lapangan | Gor-Tombro",
-            'sewa' => $sewa,
-            'lapangan' => $lapangan,
-
-
-        );
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/lapangan/sewa2', $data);
-        $this->load->view('admin/footer', $data);
-    }
-    public function post()
+    function ubah_process($id_lapangan)
     {
 
-        $data = array(
-
-            'title'         => "Tambah Data Lapangan | Gor-Tombro",
-        );
-        $this->load->view('admin/header', $data);
-        $this->load->view('admin/lapangan/post_lapangan', $data);
-        $this->load->view('admin/footer', $data);
+        $this->lapangan_model->updateDataLapangan($id_lapangan);
     }
-    // proses tambah
-    function tambah_process()
+    function hapus_process($id_lapangan)
     {
 
-        $this->lapangan_model->insertDataLapangan();
-    }
-    function ubah_process($id_sewa)
-    {
-
-        $this->sewa_model->updateDataSewa($id_sewa);
-    }
-    function hapus_process($id_sewa)
-    {
-
-        $this->sewa_model->deleteDataSewa($id_sewa);
+        $this->lapangan_model->deleteDataLapangan($id_lapangan);
     }
 }

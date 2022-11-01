@@ -91,12 +91,13 @@
                                 <input type="password" name="password" class="form-control" placeholder="Kata sandi" required="">
                                 <i class="ti ti-key form-control-feedback"></i>
                             </div>
-                            <button class="btn btn-primary btn-block" type="submit">Masuk</button>
+                            <button class="btn btn-primary btn-block" type="submit">Masuk</button><br>
+
                         </div>
                     </div>
 
                     <div class="pad-all">
-                        <small>kesulitan mengakses aplikasi, harap hubungi admin</small> <br>
+                        <small>Belum mempunyai akun silahkan <a href="<?php echo base_url('Registrasi') ?>">registrasi</a></small> <br>
                     </div>
                 </form>
 
@@ -148,7 +149,6 @@
         });
     </script>
 
-    <!-- <link type="text/css" rel="stylesheet" href="<?php echo base_url() ?>assets/css/demo/bootstrap.min.css"> -->
 
 </body>
 
