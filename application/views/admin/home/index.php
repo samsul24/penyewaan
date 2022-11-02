@@ -43,305 +43,344 @@
         </div>
     </div>
 
+    <div class="listing-item-grid_container fl-wrap">
+        <div class="row">
 
-    <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    User</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $this->db->get('user')->num_rows() ?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-hand-holding-heart fa-2x text-gray-300"></i>
+                            </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                User</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $this->db->get('user')->num_rows() ?></div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-hand-holding-heart fa-2x text-gray-300"></i>
-                        </div>
-
                     </div>
+                    <a href="<?php echo base_url("admin/pemasukan_non_donasi"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
                 </div>
-                <a href="<?php echo base_url("admin/pemasukan_non_donasi"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
             </div>
-        </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Jumlah Pesanan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $this->db->get_where('data_sewa', array('status' => 'belum_selesai'))->num_rows() ?>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Jumlah Pesanan</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $this->db->get_where('data_sewa', array('status' => 'belum_selesai'))->num_rows() ?>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-users fa-2x text-gray-300"></i>
-                        </div>
                     </div>
+                    <a href="<?php echo base_url("admin/users"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
                 </div>
-                <a href="<?php echo base_url("admin/users"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
             </div>
-        </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Lapangan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $this->db->get_where('lapangan')->num_rows() ?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-funnel-dollar fa-2x text-gray-300"></i>
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Lapangan</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $this->db->get_where('lapangan')->num_rows() ?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-funnel-dollar fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
+                    <a href="<?php echo base_url("admin/pengeluaran_donasi"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
                 </div>
-                <a href="<?php echo base_url("admin/pengeluaran_donasi"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
             </div>
-        </div>
 
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Pengumuman</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?php echo $this->db->get_where('pengumuman')->num_rows() ?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-                <a href="<?php echo base_url("admin/kategori"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
-            </div>
-        </div>
-    </div>
-    <br><br><br>
-    <div class="row">
-        <!-- Area Chart -->
-        <div class="col-xl-6 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header bg-primary py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-white">Grafik Sewa Perbulan Lapangan 1 pada
-                        Tahun
-                        <?= date('Y'); ?>
-                    </h6>
-                </div>
-                <!-- Card Body -->
-                <div class="chart-area">
-                    <div class="chartjs-size-monitor">
-                        <div class="chartjs-size-monitor-expand">
-                            <div class=""></div>
-                        </div>
-                        <div class="chartjs-size-monitor-shrink">
-                            <div class=""></div>
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Pengumuman</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?php echo $this->db->get_where('pengumuman')->num_rows() ?></div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-list fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
-                    <canvas id="myAreaChart1" width="669" height="450" class="chartjs-render-monitor" style="display: block; width: 669px; height: 320px;"></canvas>
+                    <a href="<?php echo base_url("admin/kategori"); ?>" class="btn btn-primary"> <i class="fas fa-fw fa-eye"></i>&nbsp;Detail </a>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 col-lg-7">
-            <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header bg-primary py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-white">Grafik Sewa Perbulan Lapangan 2 pada
-                        Tahun
-                        <?= date('Y'); ?>
-                    </h6>
-                </div>
-                <!-- Card Body -->
-                <div class="chart-area">
-                    <div class="chartjs-size-monitor">
-                        <div class="chartjs-size-monitor-expand">
-                            <div class=""></div>
-                        </div>
-                        <div class="chartjs-size-monitor-shrink">
-                            <div class=""></div>
-                        </div>
+        <br><br><br>
+        <div class="row">
+            <!-- Area Chart -->
+            <div class="col-xl-6 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header bg-primary py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-white">Grafik Sewa Perbulan Lapangan 1 pada
+                            Tahun
+                            <?= date('Y'); ?>
+                        </h6>
                     </div>
-                    <canvas id="myAreaChart2" width="669" height="450" class="chartjs-render-monitor" style="display: block; width: 669px; height: 320px;"></canvas>
+                    <!-- Card Body -->
+                    <div class="list-single-main-item fl-wrap block_box">
+                        <!-- chart-wra-->
+                        <div class="chart-wrap   fl-wrap">
+                            <div class="chart-header fl-wrap">
+                                <div id="myChart"></div>
+                            </div>
+                            <canvas id="canvas-chart"></canvas>
+                        </div>
+                        <!--chart-wrap end-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-7">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header bg-primary py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-white">Grafik Sewa Perbulan Lapangan 2 pada
+                            Tahun
+                            <?= date('Y'); ?>
+                        </h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="list-single-main-item fl-wrap block_box">
+                        <!-- chart-wra-->
+                        <div class="chart-wrap fl-wrap">
+                            <div class="chart-header fl-wrap">
+                                <div id="myChartLegend2"></div>
+                            </div>
+                            <canvas id="canvas-chart2"></canvas>
+                        </div>
+                        <!--chart-wrap end-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<script src="<?php echo base_url() ?>assets/js/charts.js"></script>
 
 <script>
-    var ctx = document.getElementById('myAreaChart1').getContext('2d');
-    var myChart = new Chart(ctx, {
+    'use strict';
+
+    function legendClickCallback1(event) {
+        event = event || window.event;
+
+        var target = event.target || event.srcElement;
+        while (target.nodeName !== 'LI') {
+            target = target.parentElement;
+        }
+        var parent = target.parentElement;
+        var chartId = parseInt(parent.classList[0].split("-")[0], 10);
+        var chart = Chart.instances[chartId];
+        var index = Array.prototype.slice.call(parent.children).indexOf(target);
+        var meta = chart.getDatasetMeta(index);
+        if (meta.hidden === null) {
+            meta.hidden = !chart.data.datasets[index].hidden;
+            target.classList.add('hidden-lable');
+        } else {
+            target.classList.remove('hidden-lable');
+            meta.hidden = null;
+        }
+        chart.update();
+    }
+    var config = {
         type: 'line',
         data: {
-            // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            labels: [
-                <?php foreach ($data_bulan as $m) :
-                    echo "'" . substr($m['month'], 0, 3) . "', "; ?>
-                <?php endforeach ?>
-
-
-            ],
-
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
-                label: "Data Sewa",
-                lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                borderColor: "rgba(78, 115, 223, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [
-                    <?php
-                    foreach ($chart as $value) {
-                        echo "'" . $value['revenue'] . "', ";
-                    }
-                    ?>
-                ],
-            }],
+                    label: 'Data Sewa',
+                    fill: true,
+                    animation: false,
+                    backgroundColor: "rgba(94, 207, 177, 0.2)",
+                    borderColor: "#5ECFB1",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointBorderColor: "#1f2833",
+                    pointHoverBorderWidth: 1,
+                    data: [<?php echo implode(', ', $charts) ?>]
+                }
+
+            ]
         },
         options: {
+            legend: {
+                display: false
+            },
+            hover: {
+                onHover: function(e) {
+                    var point = this.getElementAtEvent(e);
+                    if (point.length) e.target.style.cursor = 'pointer';
+                    else e.target.style.cursor = 'default';
+                }
+            },
             scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'date'
-                    },
-                    gridLines: {
-                        display: true,
-                        drawBorder: true
-                    },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
-                }],
                 yAxes: [{
                     ticks: {
-                        maxTicksLimit: 5,
-                        padding: 10,
+                        fontColor: "rgba(0,0,0,0.2)",
+                        fontStyle: "bold",
+                        beginAtZero: true,
+
+                        padding: 20
                     },
                     gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false
+
+                        display: true,
+                        zeroLineColor: "transparent"
+                    }
+
+                }],
+                xAxes: [{
+                    gridLines: {
+                        zeroLineColor: "transparent"
+                    },
+                    ticks: {
+                        padding: 20,
+                        fontColor: "rgba(0,0,0,0.5)",
+                        fontStyle: "bold"
                     }
                 }],
+
             },
-        },
-        legend: {
-            display: true
-        },
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 14,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            caretPadding: 10,
+            tooltips: {
+                backgroundColor: "rgba(0,0,0,0.6)",
+                titleMarginBottom: 10,
+                footerMarginTop: 6,
+                xPadding: 22,
+                yPadding: 12
+            }
         }
-    });
+    };
+    var ctx = document.getElementById("canvas-chart");
+    var myLegendContainer = document.getElementById("myChart");
+
+    var myChart = new Chart(ctx, config);
+    myLegendContainer.innerHTML = myChart.generateLegend();
+    var legendItems = myLegendContainer.getElementsByTagName('li');
+    for (var i = 0; i < legendItems.length; i += 1) {
+        legendItems[i].addEventListener("click", legendClickCallback1, false);
+    }
 </script>
 
 <script>
-    var ctx = document.getElementById('myAreaChart2').getContext('2d');
-    var myChart = new Chart(ctx, {
+    'use strict';
+
+    function legendClickCallback2(event) {
+        event = event || window.event;
+
+        var target = event.target || event.srcElement;
+        while (target.nodeName !== 'LI') {
+            target = target.parentElement;
+        }
+        var parent = target.parentElement;
+        var chartId = parseInt(parent.classList[0].split("-")[0], 10);
+        var chart = Chart.instances[chartId];
+        var index = Array.prototype.slice.call(parent.children).indexOf(target);
+        var meta = chart.getDatasetMeta(index);
+        if (meta.hidden === null) {
+            meta.hidden = !chart.data.datasets[index].hidden;
+            target.classList.add('hidden-lable');
+        } else {
+            target.classList.remove('hidden-lable');
+            meta.hidden = null;
+        }
+        chart.update();
+    }
+    var config = {
         type: 'line',
         data: {
-            // labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            labels: [
-                <?php foreach ($data_bulan2 as $m) :
-                    echo "'" . substr($m['month'], 0, 3) . "', "; ?>
-                <?php endforeach ?>
-
-
-            ],
-
+            labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
             datasets: [{
-                label: "Data Sewa",
-                lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                borderColor: "rgba(78, 115, 223, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [
-                    <?php
-                    foreach ($chart2 as $value) {
-                        echo "'" . $value['revenue'] . "', ";
-                    }
-                    ?>
-                ],
-            }],
+                    label: 'Data Sewa',
+                    fill: true,
+                    animation: false,
+                    backgroundColor: "rgba(94, 207, 177, 0.2)",
+                    borderColor: "#5ECFB1",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointBorderColor: "#1f2833",
+                    pointHoverBorderWidth: 1,
+                    data: [<?php echo implode(', ', $charts2) ?>]
+                }
+
+            ]
         },
         options: {
+            legend: {
+                display: false
+            },
+            hover: {
+                onHover: function(e) {
+                    var point = this.getElementAtEvent(e);
+                    if (point.length) e.target.style.cursor = 'pointer';
+                    else e.target.style.cursor = 'default';
+                }
+            },
             scales: {
-                xAxes: [{
-                    time: {
-                        unit: 'date'
-                    },
-                    gridLines: {
-                        display: true,
-                        drawBorder: true
-                    },
-                    ticks: {
-                        maxTicksLimit: 7
-                    }
-                }],
                 yAxes: [{
                     ticks: {
-                        maxTicksLimit: 5,
-                        padding: 10,
+                        fontColor: "rgba(0,0,0,0.2)",
+                        fontStyle: "bold",
+                        beginAtZero: true,
+
+                        padding: 20
                     },
                     gridLines: {
-                        color: "rgb(234, 236, 244)",
-                        zeroLineColor: "rgb(234, 236, 244)",
-                        drawBorder: false
+
+                        display: true,
+                        zeroLineColor: "transparent"
+                    }
+
+                }],
+                xAxes: [{
+                    gridLines: {
+                        zeroLineColor: "transparent"
+                    },
+                    ticks: {
+                        padding: 20,
+                        fontColor: "rgba(0,0,0,0.5)",
+                        fontStyle: "bold"
                     }
                 }],
+
             },
-        },
-        legend: {
-            display: true
-        },
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 14,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            caretPadding: 10,
+            tooltips: {
+                backgroundColor: "rgba(0,0,0,0.6)",
+                titleMarginBottom: 10,
+                footerMarginTop: 6,
+                xPadding: 22,
+                yPadding: 12
+            }
         }
-    });
+    };
+    var ctx = document.getElementById("canvas-chart2");
+    var myLegendContainer = document.getElementById("myChartLegend2");
+
+    var myChart = new Chart(ctx, config);
+    myLegendContainer.innerHTML = myChart.generateLegend();
+    var legendItems = myLegendContainer.getElementsByTagName('li');
+    for (var i = 0; i < legendItems.length; i += 1) {
+        legendItems[i].addEventListener("click", legendClickCallback2, false);
+    }
 </script>

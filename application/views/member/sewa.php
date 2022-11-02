@@ -305,7 +305,7 @@
                                             <input type="hidden" class="form-control" name="status[]" value="belum_disetujui" placeholder="Masukkan nama pemesan" required="" />
                                             <div class="form-group">
                                                 <p class="text-semibold" style="text-align:left;">Nama Pemesan</p>
-                                                <input type="text" class="form-control" name="nama[]" value="<?php echo  $this->session->userdata('sess_username') ?>" placeholder="Masukkan nama pemesan" required="" />
+                                                <input type="text" class="form-control" name="nama[]" value="<?php echo  $this->session->userdata('sess_name') ?>" placeholder="Masukkan nama pemesan" required="" />
                                             </div>
                                             <div class="form-group">
 
@@ -368,12 +368,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Perhatian</h4>
+                        <h3>Perhatian !!</h3>
                     </div>
                     <div class="modal-body">
-                        <p>1. Jadwal lapangan beroperasi mulai pukul 07.00 s/d 23.00.</p>
-                        <p>2. Nomer Telepon / WhatApp hanya : 085*************</p>
-                        <p>3. Segera Konfirmasi ke admin jika lapangan yang dipesan sudah melakukan pelunasan</p>
+                        <h4>1. Jadwal lapangan beroperasi mulai pukul 07.00 s/d 23.00.</h4>
+                        <h4>2. Nomer Telepon / WhatsApp hanya : 085*************</h4>
+                        <h4>3. Segera Konfirmasi ke admin jika lapangan yang dipesan sudah melakukan pelunasan</h4>
+                        <h4>4. Biaya Sewa Lapangan Perjam adalah <b>Rp. 20.000.</b></h4>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

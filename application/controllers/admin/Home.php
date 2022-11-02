@@ -13,6 +13,7 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('login_model');
         $this->load->model('sewa_model');
+        $this->load->model('filter_model');
 
         // memanggil model
     }
@@ -27,16 +28,16 @@ class Home extends CI_Controller
     public function index()
     {
         $data_bulan = $this->sewa_model->getMonth1();
-        $chart = $this->sewa_model->getDateforChart1();
         $data_bulan2 = $this->sewa_model->getMonth2();
-        $chart2 = $this->sewa_model->getDateforChart2();
+        $charts = $this->filter_model->chart1();
+        $charts2 = $this->filter_model->chart2();
         $data = array(
 
             'title'         => "Admin | Gor-Tombro",
             'data_bulan' => $data_bulan,
-            'chart' => $chart,
+            'charts' => $charts,
+            'charts2' => $charts2,
             'data_bulan2' => $data_bulan2,
-            'chart2' => $chart2,
         );
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

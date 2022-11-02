@@ -47,7 +47,7 @@
 
             <a href="index.html" class="logo-holder"></a>
             <?php if (empty($this->session->userdata('sess_username'))) { ?>
-                <div class="show-reg-form modal-open avatar-img "><i class=" fal fa-user"></i><a style="color:aliceblue" href="<?php echo site_url(); ?>Login">Login</a></div>
+                <div class="show-reg-form "><i class="fal fa-user"></i><a style="color:aliceblue" href="<?php echo site_url(); ?>Login">Login</a></div>
             <?php } ?>
 
 

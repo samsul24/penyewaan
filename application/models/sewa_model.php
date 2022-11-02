@@ -11,24 +11,25 @@ class sewa_model extends CI_Model
     // ambil data sewa
     function getDataSewa1()
     {
+        $tgl    = date("Y-m-d");
 
         $this->db->select('*');
         $this->db->from('data_sewa');
         $this->db->join('lapangan', 'lapangan.id_lapangan = data_sewa.id_lapangan', 'left');
         $this->db->where('lapangan.id_lapangan', 1);
-        // $this->db->where('data_sewa.status', 'disetujui');
+        $this->db->where('data_sewa.tanggal', $tgl);
         $query = $this->db->get();
 
         return $query;
     }
     function getDataSewa2()
     {
-
+        $tgl    = date("Y-m-d");
         $this->db->select('*');
         $this->db->from('data_sewa');
         $this->db->join('lapangan', 'lapangan.id_lapangan = data_sewa.id_lapangan', 'left');
         $this->db->where('lapangan.id_lapangan', 2);
-        // $this->db->where('data_sewa.status', 'disetujui');
+        $this->db->where('data_sewa.tanggal', $tgl);
         $query = $this->db->get();
 
         return $query;
@@ -81,15 +82,6 @@ class sewa_model extends CI_Model
     }
 
 
-    // function deleteData()
-    // {
-    //     $sql = "DELETE FROM `data_sewa` WHERE `id_sewa` IN (
-    //         SELECT * FROM (
-    //           SELECT `id_sewa` FROM `data_sewa` WHERE DATEDIFF(CURRENT_DATE,`tanggal`) >= 2 
-    //         ) AS t2
-    //       )";
-    //     return $this->db->query($sql);
-    // }
     function deleteDataSewa1($id_sewa)
     {
 
@@ -251,19 +243,7 @@ class sewa_model extends CI_Model
         $this->db->where('id_lapangan', 1);
         return $this->db->get()->result_array();
     }
-    public function getDateforChart1()
-    {
-        $this->db->select('MONTHNAME(tanggal) as month, 
-        SUM(IF(MONTH(tanggal)=MONTH(tanggal) , durasi, 0)) as revenue');
-        $this->db->from('data_sewa');
-        $this->db->group_by('tanggal');
-        $this->db->order_by('tanggal', 'DESC');
-        $this->db->where('status', 'disetujui');
-        $this->db->where('id_lapangan', 1);
 
-
-        return $this->db->get()->result_array();
-    }
 
 
 
@@ -332,19 +312,6 @@ class sewa_model extends CI_Model
         $this->db->order_by('id_sewa', 'ASC');
         $this->db->where('status', 'disetujui');
         $this->db->where('id_lapangan', 2);
-        return $this->db->get()->result_array();
-    }
-    public function getDateforChart2()
-    {
-        $this->db->select('MONTHNAME(tanggal) as month, 
-        SUM(IF(MONTH(tanggal)=MONTH(tanggal) , durasi, 0)) as revenue');
-        $this->db->from('data_sewa');
-        $this->db->group_by('tanggal');
-        $this->db->order_by('tanggal', 'DESC');
-        $this->db->where('status', 'disetujui');
-        $this->db->where('id_lapangan', 2);
-
-
         return $this->db->get()->result_array();
     }
 }
